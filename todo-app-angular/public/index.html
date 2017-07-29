@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+	<title>Deployd Todos</title>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+body{
+    background-color: #8080FF;
+}
+#bdy{
+    background-color: #fff;
+    height: 200%;
+    /*padding-bottom: 1%;*/
+    border-bottom: 5px #000000 solid;
+
+}
+.jumbotron{
+    margin-top: 1%;
+}
+
+</style>
+  <!-- Angular does some things with CSS so it's good to load this in the head -->
+  <script type="text/javascript" src="/js/lib/angular.js"></script>
+</head>
+<body>
+
+  <div id="bdy" class="container" ng-controller="TodoController" ng-cloak>
+     <div class="jumbotron">
+  <h1>Declavis Todo App</h1>
+</div>
+      <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Add Task</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="newTodoTitle" placeholder="Task">
+        </div>
+        <button type="submit" ng-click="addTodo(newTodoTitle)" class="btn btn-default">Add</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href ng-click="removeCompletedItems()">Done</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    <p id="empty" ng-hide="todos.length || !loaded">You don't have any todos! Add one now:</p>
+    <ul id="todos" class="unstyled">
+      <li ng-repeat="todo in todos">
+        <label class="checkbox">
+          <input type="checkbox" ng-model="todo.completed" ng-change="changeCompleted(todo)" />
+          {{todo.title}}
+        </label>
+      </li>
+    </ul>   
+  </div>
+
+  <script type="text/javascript" src="/js/lib/jquery.js"></script>
+  <script type="text/javascript" src="/dpd.js"></script>
+  <script type="text/javascript" src="/js/todo.js"></script>
+</body>
+</html>
